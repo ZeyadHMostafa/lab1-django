@@ -1,0 +1,25 @@
+<!-- Note: all pages extend the base template, please check it for more info -->
+{% extends 'studentmanager/base.html' %}
+{% block content %}
+<h2>Grades</h2>
+<div class="form-container">
+	<form method="post">{% csrf_token %}{{ form.as_p }}
+		<button type="submit" class="btn btn-primary">Add Grade</button>
+	</form>
+</div>
+<table class="data-table">
+	<thead>
+		<tr><th>Student</th><th>Subject</th><th>Grade</th><th>Actions</th></tr>
+	</thead>
+	<tbody>
+		{% for g in grades %}
+		<tr>
+			<td>{{ g.student.name }}</td>
+			<td>{{ g.subject }}</td>
+			<td>{{ g.grade }}</td>
+			<td><a href="{% url 'delete_grade' g.id %}" class="btn-danger">Delete</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

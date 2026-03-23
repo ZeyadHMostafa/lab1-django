@@ -1,0 +1,21 @@
+<!-- Note: all pages extend the base template, please check it for more info -->
+{% extends 'studentmanager/base.html' %}
+{% block content %}
+	<h1>Welcome to the ITI Student Management System</h1>
+	<p>For transparency, AI Assistance was used in:</p>
+	<ul>
+		<li>CSS</li>
+		<li>Forms, because I didn't want to worry about validation myself</li>
+		<li>Advanced Templates (content blocks)</li>
+		<li>Media Handling (user avatars)</li>
+	</ul>
+	<p>
+		Also note I used forms even though they weren't explained yet. 
+		but I sort of messed around with them. and I figured it wouldn't hurt.
+		if I used regular html forms, it would have been annoying
+		to do the file uploads and validation.
+	</p>
+	
+	<hr>
+	<p><small>System Admin? <a href="/admin/">Access Django Admin</a></small></p>
+{% endblock %}

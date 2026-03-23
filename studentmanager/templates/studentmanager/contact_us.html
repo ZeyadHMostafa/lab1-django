@@ -1,0 +1,14 @@
+{% extends 'studentmanager/base.html' %}
+
+{% block content %}
+<h2>Contact Us</h2>
+<p>Have a suggestion or found a bug? Let us know below.</p>
+
+<div class="form-container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Send Feedback</button>
+    </form>
+</div>
+{% endblock %}

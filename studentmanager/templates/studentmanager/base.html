@@ -1,0 +1,32 @@
+<!-- This is the base template for the Student Management System -->
+<!-- I made it to avoid repeating the navbar -->
+<!-- it uses content blocks which can be defined later when extending this template -->
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}Student System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'studentmanager/css/style.css' %}" />
+  </head>
+  <body>
+    <nav class="nav-header">
+      <a href="{% url 'home' %}" class="nav-brand">StudentPortal</a>
+
+      <div class="nav-links">
+        <a href="{% url 'home' %}" class="nav-link">Dashboard</a>
+        <a href="{% url 'manage_students' %}" class="nav-link">Students</a>
+        <a href="{% url 'manage_grades' %}" class="nav-link">Grades</a>
+        <a href="{% url 'contact_us' %}" class="nav-link">Contact</a>
+      </div>
+    </nav>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="message">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    <main>{% block content %}{% endblock %}</main>
+  </body>
+</html>
