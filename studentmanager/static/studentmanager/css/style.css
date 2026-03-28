@@ -233,3 +233,44 @@ details.form-accordion .form-container {
 	background-color: #ffffff;
   border-left: 4px solid #0984e3;
 }
+
+/* Styling the specific info sections on Home */
+.hero-section {
+	padding: 20px 0;
+}
+
+.feature-list {
+	list-style: none; /* Remove default bullets */
+	padding: 0;
+	margin: 15px 0;
+}
+
+.feature-list li {
+	background: #f1f2f6;
+	display: inline-block; /* Makes the tag look like a pill/badge */
+	padding: 5px 15px;
+	border-radius: 20px;
+	color: #0984e3;
+	font-weight: 600;
+	font-size: 0.9rem;
+	border: 1px solid #d1d8e0;
+}
+
+.notice-box {
+	background-color: #fff9db; /* Light warning/info yellow */
+	border-left: 4px solid #f1c40f;
+	padding: 15px 20px;
+	margin: 20px 0;
+	border-radius: 4px;
+	font-style: italic;
+	color: #7f8c8d;
+}
+
+.admin-link {
+	opacity: 0.7;
+	transition: opacity 0.2s;
+}
+
+.admin-link:hover {
+	opacity: 1;
+}

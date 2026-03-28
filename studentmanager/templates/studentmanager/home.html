@@ -1,21 +1,24 @@
-<!-- Note: all pages extend the base template, please check it for more info -->
 {% extends 'studentmanager/base.html' %}
 {% block content %}
+<div class="hero-section">
 	<h1>Welcome to the ITI Student Management System</h1>
+	
 	<p>For transparency, AI Assistance was used in:</p>
-	<ul>
-		<li>CSS</li>
-		<li>Forms, because I didn't want to worry about validation myself</li>
-		<li>Advanced Templates (content blocks)</li>
-		<li>Media Handling (user avatars)</li>
+	<ul class="feature-list">
+		<li>CSS & UI Design</li>
 	</ul>
-	<p>
-		Also note I used forms even though they weren't explained yet. 
-		but I sort of messed around with them. and I figured it wouldn't hurt.
-		if I used regular html forms, it would have been annoying
-		to do the file uploads and validation.
-	</p>
+
+	<div class="notice-box">
+		<p>
+			<strong>Note:</strong> I decided to keep the home page public while locking the management 
+			tools. Links are hidden from the navbar for guests, and views are protected with 
+			<code>@login_required</code>.
+		</p>
+	</div>
 	
 	<hr>
-	<p><small>System Admin? <a href="/admin/">Access Django Admin</a></small></p>
+	<p class="admin-link">
+		<small>System Admin? <a href="/admin/">Access Django Admin</a></small>
+	</p>
+</div>
 {% endblock %}

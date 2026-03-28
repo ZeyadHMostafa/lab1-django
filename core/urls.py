@@ -25,9 +25,11 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', include('studentmanager.urls')),
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-	path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('profile/', studentmanager_views.profile, name='profile'),
+	path('home/', include('studentmanager.urls')),
+    
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+	path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('accounts/profile/', studentmanager_views.profile, name='profile'),
 ]
 
 # I added this to serve media files during development, which is necessary for the student images to work properly.
