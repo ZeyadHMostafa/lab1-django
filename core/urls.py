@@ -14,14 +14,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from studentmanager import views as studentmanager_views
+
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from core import settings
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', include('studentmanager.urls')),
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+	path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('profile/', studentmanager_views.profile, name='profile'),
 ]
 
 # I added this to serve media files during development, which is necessary for the student images to work properly.

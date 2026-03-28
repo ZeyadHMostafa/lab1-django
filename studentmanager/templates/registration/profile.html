@@ -1,0 +1,15 @@
+{% extends 'studentmanager/base.html' %}
+{% block title %} My Profile {% endblock %}
+
+{% block content %}
+<div class="profile-container">
+	<h2>User Profile</h2>
+	<div class="card">
+		<p><strong>Username:</strong> {{ user.username }}</p>
+		<p><strong>Email:</strong> {{ user.email|default:"No email provided" }}</p>
+		<p><strong>Date Joined:</strong> {{ user.date_joined|date:"F j, Y" }}</p>
+		<hr>
+		<p><strong>Staff Stats:</strong> You have recorded <b>{{ grades_count }}</b> grades.</p>
+	</div>
+</div>
+{% endblock %}

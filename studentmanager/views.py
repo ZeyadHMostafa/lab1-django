@@ -2,10 +2,21 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Student, Grade, Subject
 from .forms import StudentForm, GradeForm, FeedbackForm, SubjectForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def home(request):
 	return render(request, 'studentmanager/home.html')
 
+@login_required
+def profile(request):
+	grades_count = request.user.assigned_grades.count()
+	
+	return render(request, 'registration/profile.html', {
+		'user': request.user,
+		'grades_count': grades_count
+	})
+
+@login_required
 def manage_students(request):
 	if request.method == "POST":
 		form = StudentForm(request.POST, request.FILES)
@@ -21,6 +32,7 @@ def manage_students(request):
 		'students': students
 	})
 
+@login_required
 def update_student(request, student_id):
 	student = get_object_or_404(Student, student_id=student_id)
 	if request.method == "POST":
@@ -32,11 +44,13 @@ def update_student(request, student_id):
 		form = StudentForm(instance=student)
 	return render(request, 'studentmanager/update_item.html', {'form': form, 'title': 'Update Student'})
 
+@login_required
 def delete_student(request, student_id):
 	student = get_object_or_404(Student, student_id=student_id)
 	student.delete()
 	return redirect('manage_students')
 
+@login_required
 def manage_subjects(request):
 	if request.method == "POST":
 		form = SubjectForm(request.POST)
@@ -48,6 +62,7 @@ def manage_subjects(request):
 	subjects = Subject.objects.all()
 	return render(request, 'studentmanager/manage_subjects.html', {'form': form, 'subjects': subjects})
 
+@login_required
 def update_subject(request, pk):
 	subject = get_object_or_404(Subject, pk=pk)
 	if request.method == "POST":
@@ -59,11 +74,13 @@ def update_subject(request, pk):
 		form = SubjectForm(instance=subject)
 	return render(request, 'studentmanager/update_item.html', {'form': form, 'title': 'Update Subject'})
 
+@login_required
 def delete_subject(request, subject_id):
 	subject = get_object_or_404(Subject, id=subject_id)
 	subject.delete()
 	return redirect('manage_subjects')
 
+@login_required
 def manage_grades(request):
 	if request.method == "POST":
 		form = GradeForm(request.POST)
@@ -83,6 +100,7 @@ def manage_grades(request):
 		'grades': grades
 	})
 
+@login_required
 def update_grade(request, pk):
 	grade = get_object_or_404(Grade, pk=pk)
 	if request.method == "POST":
@@ -94,6 +112,7 @@ def update_grade(request, pk):
 		form = GradeForm(instance=grade)
 	return render(request, 'studentmanager/update_item.html', {'form': form, 'title': 'Update Grade'})
 
+@login_required
 def delete_grade(request, grade_id):
 	grade = get_object_or_404(Grade, id=grade_id)
 	grade.delete()

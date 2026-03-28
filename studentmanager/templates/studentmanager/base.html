@@ -9,17 +9,7 @@
     <link rel="stylesheet" href="{% static 'studentmanager/css/style.css' %}" />
   </head>
   <body>
-    <nav class="nav-header">
-      <a href="{% url 'home' %}" class="nav-brand">StudentPortal</a>
-
-      <div class="nav-links">
-        <a href="{% url 'home' %}" class="nav-link">Dashboard</a>
-        <a href="{% url 'manage_students' %}" class="nav-link">Students</a>
-        <a href="{% url 'manage_subjects' %}" class="nav-link">Subjects</a>
-        <a href="{% url 'manage_grades' %}" class="nav-link">Grades</a>
-        <a href="{% url 'contact_us' %}" class="nav-link">Contact</a>
-      </div>
-    </nav>
+    {% include 'studentmanager/navbar.html' %}
 
     {% if messages %}
       {% for message in messages %}
