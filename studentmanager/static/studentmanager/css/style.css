@@ -2,6 +2,12 @@
 /* And thus the forms lso had AI affect them to add the classes */
 
 /* Generic styles for the whole app */
+*, *::before, *::after {
+  box-sizing: border-box; /* Ensures padding/borders don't affect width */
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: sans-serif;
   line-height: 1.6;
@@ -54,27 +60,6 @@ h2 {
   color: #0984e3;
 }
 
-/* Active/Primary Button Style */
-.btn-primary {
-  background-color: #0984e3;
-  color: white !important;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #74b9ff;
-  transform: translateY(-1px); /* Slight lift on hover */
-}
-
-.btn-danger {
-  color: #d63031;
-  border: 1px solid #ff7675;
-  padding: 4px 10px;
-  font-size: 0.9rem;
-}
-.btn-danger:hover {
-  background-color: #fff5f5;
-}
 /* Forms */
 .form-container {
   background: #f4f4f4;
@@ -84,13 +69,6 @@ h2 {
 }
 form p {
   margin-bottom: 15px;
-}
-input,
-select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  box-sizing: border-box;
 }
 
 /* Tables */
@@ -129,4 +107,129 @@ select {
   color: #155724;
   border-radius: 5px;
   margin-bottom: 20px;
+}
+
+button, 
+.btn, 
+.btn-primary, 
+.btn-danger, 
+.btn-secondary {
+	padding: 10px 18px;
+	border-radius: 6px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 0.95rem;
+	border: 1px solid transparent;
+}
+
+input, 
+select, 
+textarea {
+	border: 1px solid #ddd;
+	border-radius: 6px;
+  width: 100%;
+	padding: 10px;
+	transition: border-color 0.2s;
+}
+
+input:focus {
+	outline: none;
+	border-color: #0984e3;
+	box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.1);
+}
+
+.search-form {
+	background: #ffffff;
+	padding: 15px;
+	border: 1px solid #eee;
+	border-radius: 8px;
+	display: flex;
+	gap: 12px;
+	margin-bottom: 25px;
+	align-items: center;
+}
+
+.search-form input {
+	flex: 1; /* Makes inputs grow to fill space */
+	margin-top: 0; /* Overrides the 5px margin from your generic input style */
+}
+
+.btn-primary {
+	background-color: #0984e3;
+	color: white !important;
+}
+
+.btn-secondary {
+	background-color: #636e72;
+	color: white !important;
+}
+
+.btn-secondary:hover {
+	background-color: #2d3436;
+}
+
+.btn-danger {
+	background-color: transparent;
+	color: #d63031;
+	border-color: #ff7675;
+}
+
+.btn-danger:hover {
+	background-color: #d63031;
+	color: white;
+}
+
+.btn-link {
+	color: #636e72;
+	text-decoration: underline;
+	font-size: 0.9rem;
+}
+
+.btn-link:hover {
+	color: #2d3436;
+}
+
+/* Container for the whole accordion */
+details.form-accordion {
+	margin-bottom: 25px;
+	border: 1px solid #eee;
+	border-radius: 8px;
+	overflow: hidden; /* Keeps the background colors inside the rounded corners */
+	transition: all 0.3s ease;
+}
+
+/* The clickable bar */
+details.form-accordion summary {
+	padding: 12px 20px;
+	background-color: #f8f9fa;
+	color: #636e72;
+	font-weight: 600;
+	cursor: pointer;
+	list-style: none; /* Removes default arrow */
+  border-left: 4px solid #eee;
+	border-bottom: 1px solid transparent;
+	transition: background-color 0.2s;
+}
+
+details.form-accordion[open] summary {
+	background-color: #eee;
+	color: #2d3436;
+	border-bottom: none;
+  border-left-color: #0984e3;
+}
+
+details.form-accordion summary:hover {
+	background-color: #f1f2f6;
+	color: #0984e3;
+}
+
+/* Remove padding/margin from the container inside so it fits tight */
+details.form-accordion .form-container {
+	margin-bottom: 0;
+	border-radius: 0;
+	background-color: #ffffff;
+  border-left: 4px solid #0984e3;
 }

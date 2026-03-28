@@ -82,6 +82,16 @@ def delete_subject(request, subject_id):
 
 @login_required
 def manage_grades(request):
+	grades = Grade.objects.all().select_related('student', 'subject', 'graded_by')
+	search_id = request.GET.get('search_id')
+	search_subject = request.GET.get('search_subject')
+
+	if search_id:
+		grades = grades.filter(student__student_id=search_id)
+	
+	if search_subject:
+		grades = grades.filter(subject__name__icontains=search_subject)
+
 	if request.method == "POST":
 		form = GradeForm(request.POST)
 		if form.is_valid():
@@ -93,8 +103,6 @@ def manage_grades(request):
 	else:
 		form = GradeForm()
 
-	grades = Grade.objects.all().select_related('student', 'subject', 'graded_by')
-	
 	return render(request, 'studentmanager/manage_grades.html', {
 		'form': form,
 		'grades': grades

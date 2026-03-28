@@ -2,11 +2,25 @@
 {% extends 'studentmanager/base.html' %}
 {% block content %}
 <h2>Grades</h2>
-<div class="form-container">
-	<form method="post">{% csrf_token %}{{ form.as_p }}
-		<button type="submit" class="btn btn-primary">Add Grade</button>
+<details class="form-accordion">
+	<summary>Add Entry</summary>
+		<div class="form-container">
+			<form method="post">{% csrf_token %}{{ form.as_p }}
+				<button type="submit" class="btn btn-primary">Add Grade</button>
+			</form>
+		</div>
+	</summary>
+</details>
+
+<div class="search-container">
+	<form method="get" class="search-form">
+		<input type="number" name="search_id" placeholder="Student ID..." value="{{ request.GET.search_id }}">
+		<input type="text" name="search_subject" placeholder="Subject Name..." value="{{ request.GET.search_subject }}">
+		<button type="submit" class="btn btn-secondary">Search</button>
+		<a href="{% url 'manage_grades' %}" class="btn-link">Clear</a>
 	</form>
 </div>
+
 <table class="data-table">
 	<thead>
 		<tr>

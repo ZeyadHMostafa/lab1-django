@@ -3,12 +3,17 @@
 {% block title %} Manage Subjects {% endblock %}
 {% block content %}
 <h2>Subjects</h2>
-<div class="form-container">
-	<form method="post">
-		{% csrf_token %} {{ form.as_p }}
-		<button type="submit" class="btn btn-primary">Add Subject</button>
-	</form>
-</div>
+
+<details class="form-accordion">
+	<summary>Add Entry</summary>
+		<div class="form-container">
+			<form method="post">
+				{% csrf_token %} {{ form.as_p }}
+				<button type="submit" class="btn btn-primary">Add Subject</button>
+			</form>
+		</div>
+	</summary>
+</details>
 
 <table class="data-table">
 	<thead>

@@ -4,13 +4,18 @@
 {% block title %} Manage Students {% endblock %}
 {% block content %}
 <h2>Students</h2>
-<div class="form-container">
-  <!-- I needed the enctype attribute for file uploads -->
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %} {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Add Student</button>
-  </form>
-</div>
+<details class="form-accordion">
+	<summary>Add Entry</summary>
+    <div class="form-container">
+      <!-- I needed the enctype attribute for file uploads -->
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Student</button>
+      </form>
+    </div>
+  </summary>
+</details>
+
 
 <table class="data-table">
   <thead>
