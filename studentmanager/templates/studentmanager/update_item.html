@@ -1,0 +1,11 @@
+{% extends 'studentmanager/base.html' %}
+{% block content %}
+<h2>{{ title }}</h2>
+<div class="form-container">
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %} {{ form.as_p }}
+		<button type="submit" class="btn btn-primary">Save Changes</button>
+		<a href="{{ request.META.HTTP_REFERER }}" class="btn-secondary">Cancel</a>
+	</form>
+</div>
+{% endblock %}

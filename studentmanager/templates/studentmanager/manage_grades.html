@@ -13,7 +13,8 @@
 			<th>Student</th>
 			<th>Subject</th>
 			<th>Grade</th>
-			<th>Graded By</th> <th>Actions</th>
+			<th>Graded By</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -22,7 +23,11 @@
 			<td>{{ g.student.name }}</td>
 			<td>{{ g.subject.name }}</td>
 			<td>{{ g.grade }}</td>
-			<td>{{ g.graded_by.username|default:"System" }}</td> <td><a href="{% url 'delete_grade' g.id %}" class="btn-danger">Delete</a></td>
+			<td>{{ g.graded_by.username|default:"System" }}</td>
+      <td>
+        <a href="{% url 'update_grade' g.id %}" class="btn-edit">Edit</a>
+        <a href="{% url 'delete_grade' g.id %}" class="btn-danger">Delete</a>
+      </td>
 		</tr>
 		{% endfor %}
 	</tbody>

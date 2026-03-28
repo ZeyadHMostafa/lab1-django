@@ -45,11 +45,8 @@
       <td>{{ student.age }}</td>
       <td>{{ student.email }}</td>
       <td>
-        <a
-          href="{% url 'delete_student' student.student_id %}"
-          class="btn-danger"
-          >Delete</a
-        >
+        <a href="{% url 'update_student' student.student_id %}" class="btn-edit">Edit</a>
+        <a href="{% url 'delete_student' student.student_id %}" class="btn-danger">Delete</a>
       </td>
     </tr>
     {% endfor %}
