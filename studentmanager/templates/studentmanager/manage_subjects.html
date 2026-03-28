@@ -1,0 +1,31 @@
+<!-- Note: all pages extend the base template, please check it for more info -->
+{% extends 'studentmanager/base.html' %}
+{% block title %} Manage Subjects {% endblock %}
+{% block content %}
+<h2>Subjects</h2>
+<div class="form-container">
+	<form method="post">
+		{% csrf_token %} {{ form.as_p }}
+		<button type="submit" class="btn btn-primary">Add Subject</button>
+	</form>
+</div>
+
+<table class="data-table">
+	<thead>
+		<tr>
+			<th>Code</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for subject in subjects %}
+		<tr>
+			<td>{{ subject.code }}</td>
+			<td>{{ subject.name }}</td>
+			<td>{{ subject.description|truncatewords:10 }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

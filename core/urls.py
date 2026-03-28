@@ -16,18 +16,12 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from core import settings
-from studentmanager import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'), # This is the new home page
-    path('students/', views.manage_students, name='manage_students'),
-    path('students/delete/<int:student_id>/', views.delete_student, name='delete_student'),
-    path('grades/', views.manage_grades, name='manage_grades'), 
-	path('grades/delete/<int:grade_id>/', views.delete_grade, name='delete_grade'),
-    path('contact/', views.contact_us, name='contact_us'),
+	path('admin/', admin.site.urls),
+	path('', include('studentmanager.urls')),
 ]
 
 # I added this to serve media files during development, which is necessary for the student images to work properly.

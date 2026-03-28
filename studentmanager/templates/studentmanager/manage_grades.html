@@ -9,15 +9,20 @@
 </div>
 <table class="data-table">
 	<thead>
-		<tr><th>Student</th><th>Subject</th><th>Grade</th><th>Actions</th></tr>
+		<tr>
+			<th>Student</th>
+			<th>Subject</th>
+			<th>Grade</th>
+			<th>Graded By</th> <th>Actions</th>
+		</tr>
 	</thead>
 	<tbody>
 		{% for g in grades %}
 		<tr>
 			<td>{{ g.student.name }}</td>
-			<td>{{ g.subject }}</td>
+			<td>{{ g.subject.name }}</td>
 			<td>{{ g.grade }}</td>
-			<td><a href="{% url 'delete_grade' g.id %}" class="btn-danger">Delete</a></td>
+			<td>{{ g.graded_by.username|default:"System" }}</td> <td><a href="{% url 'delete_grade' g.id %}" class="btn-danger">Delete</a></td>
 		</tr>
 		{% endfor %}
 	</tbody>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Student(models.Model):
 	student_id = models.IntegerField(primary_key=True)
@@ -10,16 +11,25 @@ class Student(models.Model):
 	def __str__(self):
 		return self.name
 
-class Grade(models.Model):
-	student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='grades')
-	subject = models.CharField(max_length=100)
-	grade = models.DecimalField(max_digits=5, decimal_places=2)
-
-	class Meta:
-			unique_together = ('student', 'subject')
+class Subject(models.Model):
+	name = models.CharField(max_length=100, unique=True)
+	code = models.CharField(max_length=10, unique=True)
+	description = models.TextField(blank=True)
 
 	def __str__(self):
-			return f"{self.student.name} - {self.subject}: {self.grade}"
+		return self.name
+
+class Grade(models.Model):
+	student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='grades')
+	subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='student_grades')
+	grade = models.DecimalField(max_digits=5, decimal_places=2)
+	graded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='assigned_grades')
+
+	class Meta:
+		unique_together = ('student', 'subject')
+
+	def __str__(self):
+		return f"{self.student.name} - {self.subject.name}: {self.grade}"
 
 class Feedback(models.Model):
 	email = models.EmailField()
